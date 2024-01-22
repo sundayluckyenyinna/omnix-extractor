@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div id="page" class="page">
+        <table>
+            <tr>
+                <td> ID </td>
+                <td> CreatedAt </td>
+                <td> Customer Number </td>
+                <td> Mobile Number </td>
+                <td> Disbursement Account </td>
+                <td> Brighta Commitment Account </td>
+                <td> BVN </td>
+                <td> STATUS </td>
+                <td> Approved Amount </td>
+                <td> Branch </td>
+            </tr>
+            <tr th:each="loan, index:${renewals}">
+                <td th:text="${loan.getId()}"></td>
+                <td th:text="${loan.getCreatedAt()}"></td>
+                <td th:text="${loan.getCustomerNumber()}"></td>
+                <td th:text="${loan.getMobileNumber()}"></td>
+                <td th:text="${loan.getDisbursementAccount()}"></td>
+                <td th:text="${loan.getBrightaCommitmentAccount()}"></td>
+                <td th:text="${loan.getBvn()}"></td>
+                <td th:text="${loan.getStatus()}"></td>
+                <td th:text="${loan.getLoanAmount()}"></td>
+                <td th:text="${loan.getBranch()}"></td>
+                <td>
+                    <a th:href="@{/delete-rubyx-record/{id}(id=${loan.getId()})}"> <button> Delete </button> </a>
+                </td>
+            </tr>
+        </table>
+
+        <div>
+            <a><button> Clear </button></a>
+            <a th:href="@{/start}"> <button> Start </button></a>
+        </div>
+
+
+        <di style="margin-top: 80px">
+            <h1> Trackers </h1>
+            <table>
+                <tr>
+                    <td> ID </td>
+                    <td> SN </td>
+                    <td> Customer Number </td>
+                    <td> Status </td>
+                </tr>
+                <tr th:each="t, index:${trackers}">
+                    <td th:text="${t.getId()}"></td>
+                    <td th:text="${t.getSn()}"></td>
+                    <td th:text="${t.getCustomerNumber()}"></td>
+                    <td th:text="${t.getStatus()}"></td>
+                </tr>
+            </table>
+            <div>
+                <a th:href="@{/delete-all-excel-record-tracker}"> <button> Delete all excel tracker </button> </a>
+            </div>
+        </di>
+
+
+        <div style="margin-top: 80px">
+            <h1> Excel Workbook Names Processed </h1>
+            <table>
+                <tr>
+                    <td> ID </td>
+                    <td> Workbook Name: </td>
+                    <td> Read Time: </td>
+                    <td> Status </td>
+                    <td> Action </td>
+                </tr>
+                <tr th:each="entry, index:${workbooks}">
+                    <td th:text="${entry.getId()}"></td>
+                    <td th:text="${entry.getWorkbookName()}"></td>
+                    <td th:text="${entry.getReadDateTime()}"></td>
+                    <td th:text="${entry.getStatus()}"></td>
+                    <td> <a th:href="@{/excel-record/delete/{workbookName}(workbookName=${entry.getWorkbookName()})}"> <button> Delete </button></a></td>
+                </tr>
+            </table>
+        </div>
+
+
+        <div>
+            <h1> Failed records </h1>
+            <table>
+                <tr>
+                    <td> S/N </td>
+                    <td> Customer CIF </td>
+                    <td> Failure reason </td>
+                </tr>
+                <tr th:each="failure, index:${failed}">
+                    <td th:text="${failure.getId()}"></td>
+                    <td th:text="${failure.getCustomerNumber()}"></td>
+                    <td th:text="${failure.getFailureReason()}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

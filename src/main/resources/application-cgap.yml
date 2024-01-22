@@ -1,0 +1,63 @@
+
+spring:
+  datasource:
+    username: cgap
+    password: cgapcgap
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://192.168.1.37;databaseName=Omnix;encrypt=true;trustServerCertificate=true;
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServerDialect
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+
+server:
+  port: 9092
+
+omnix:
+  start:
+    morning: 6
+    afternoon: 13
+    evening: 19
+    night: 24
+  end:
+    morning: 12
+    afternoon: 18
+    evening: 23
+    night: 5
+  tier1:
+    trans: 20000
+    mobileWithdrawal: 50000
+    balance: 200000
+    mobileDaily: 30000
+  channel:
+    user:
+      mobile: MOBUSER/Ligali1557
+      ibanking: USERUSSD/Ligali1557
+      ussd: USERUSSD/Ligali1557
+      atm: USERUSSD/Ligali1557
+      pos: USERUSSD/Ligali1557
+      default: USERUSSD/Ligali1557
+      digital: USERUSSD/Ligali1557
+      agency: USERUSSD/Ligali1557
+      authorizer: AISAUTH/System321#
+      website: MOBUSER/Ligali1557
+      ao: USERUSSD/Ligali1557
+      chatbot: USERUSSD/Ligali1557
+      api: USERUSSD/Ligali1557
+  t24:
+    username: smsuser
+    password: Smbshr@123
+    #------------This is test ----------------------
+    host: 192.168.1.110
+    port: 1572
+    ofs:
+      id: IBOFS
+      source: env.OFS_SOURCE
+    offerletter:
+      path: /Live/bnk/bnk.data/eb/&HOLD&/
